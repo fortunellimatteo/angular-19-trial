@@ -1,0 +1,85 @@
+<app-top-menu></app-top-menu>
+
+<p-card header="Login Utente" styleClass="p-mb-3">
+    <p-button label="Aggiungi sessione" icon="pi pi-check" severity="primary" (onClick)="addSession()"/>
+</p-card>
+
+<p-card header="Censimento sessioni tecniche" styleClass="p-mb-3">
+    <p-dataview [value]="sessioni" [rows]="5" [paginator]="true" >
+        <ng-template #list let-items>
+            <!--<div class="grid grid-cols-12 gap-4 grid-nogutter">
+                <div class="col-span-12" *ngFor="let item of items; let first = first" class="col-span-12">
+                    <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4"
+                        [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6">
+                            <div class="flex flex-row md:flex-col justify-between items-start gap-2">
+                                <span class="font-medium text-secondary text-sm">{{ item.nome }}</span>
+                                <span class="font-medium text-secondary text-sm">{{ item.descrizione }}</span>
+                                <span class="font-medium text-secondary text-sm">{{ item.durata }}</span>
+                                <p-button
+                                    severity="warn"
+                                    icon="pi pi-heart"
+                                    class="flex-auto md:flex-initial whitespace-nowrap"
+                                    label="Registrati alla sessione"/>
+                                <p-button
+                                    severity="danger"
+                                    icon="pi pi-trash"
+                                    class="flex-auto md:flex-initial whitespace-nowrap"
+                                    label="Cancella sessione"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="col-span-12" *ngFor="let item of items; let first = first" class="col-span-12">
+                <div style="display: flex; justify-content: space-between; gap: 10px;">
+                    <div style="flex: 1; text-align: center; padding: 10px; border: 1px solid #ccc;">{{item.nome}}</div>
+                    <div style="flex: 3; text-align: center; padding: 10px; border: 1px solid #ccc;">{{item.descrizione}}</div>
+                    <div style="flex: 1; text-align: center; padding: 10px; border: 1px solid #ccc;">{{item.durata}} minuti</div>
+                    <div style="flex: 1; text-align: center; padding: 10px; border: 1px solid #ccc;">
+                        <p-button
+                            (onClick)="deleteSession(item)"
+                            severity="danger"
+                            icon="pi pi-trash"
+                            class="flex-auto md:flex-initial whitespace-nowrap"
+                            label="Cancella sessione"/>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataview>
+</p-card>
+
+<p-dialog header="Popup di creazione sessione" [modal]="true" [(visible)]="addSessioneShow" [style]="{ width: '25rem' }">
+    <form [formGroup]="this.sessioneForm" (ngSubmit)="onSubmitSessione()">
+        <!-- Nome -->
+        <div class="p-field">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" pInputText formControlName="nome" placeholder="Inserisci il nome della sessione" />
+            <div *ngIf="sessioneForm.get('nome')?.invalid && sessioneForm.get('nome')?.touched" class="p-error">
+                <p class="red-text">Il nome della sessione è obbligatorio.</p>
+            </div>
+        </div>
+    
+        <!-- descrizione -->
+        <div class="p-field">
+            <label for="descrizione">Descrizione della sessione</label>
+            <input id="descrizione" type="text" pInputText formControlName="descrizione" placeholder="Inserisci la descrizione" />
+            <div *ngIf="sessioneForm.get('descrizione')?.invalid && sessioneForm.get('descrizione')?.touched" class="p-error">
+                <p class="red-text">La descrizione è obbligatoria.</p>
+            </div>
+        </div>
+    
+        <!-- Durata -->
+        <div class="p-field">
+            <label for="durata">Durata della sessione (in minuti)</label>
+            <input id="durata" type="text" pInputText formControlName="durata" placeholder="Inserisci la durata" />
+            <div *ngIf="sessioneForm.get('durata')?.invalid && sessioneForm.get('durata')?.touched" class="p-error">
+                <p class="red-text">Durata obbligatoria.</p>
+            </div>
+        </div>
+
+        <!-- Pulsante di convalida -->
+        <p-button label="Crea" icon="pi pi-check" severity="success" [disabled]="sessioneForm.invalid" (onClick)="onSubmitSessione()"/>
+    </form>
+</p-dialog>

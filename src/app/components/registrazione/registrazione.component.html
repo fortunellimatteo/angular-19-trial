@@ -1,0 +1,115 @@
+<div class="container">
+    <div class="box">
+        <p-card header="Registrazione Utente" styleClass="p-mb-3">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <div class="p-fluid">
+                <!-- Nome -->
+                <div class="p-field">
+                    <label for="nome">Nome</label>
+                    <input id="nome" type="text" pInputText formControlName="nome" placeholder="Inserisci il nome" />
+                    <div *ngIf="userForm.get('nome')?.invalid && userForm.get('nome')?.touched" class="p-error">
+                        <p class="red-text">Il nome è obbligatorio.</p>
+                    </div>
+                </div>
+            
+                <!-- Cognome -->
+                <div class="p-field">
+                    <label for="cognome">Cognome</label>
+                    <input id="cognome" type="text" pInputText formControlName="cognome" placeholder="Inserisci il cognome" />
+                    <div *ngIf="userForm.get('cognome')?.invalid && userForm.get('cognome')?.touched" class="p-error">
+                        <p class="red-text">Il cognome è obbligatorio.</p>
+                    </div>
+                </div>
+            
+                <!-- Azienda di riferimento -->
+                <div class="p-field">
+                    <label for="azienda">Azienda di riferimento</label>
+                    <input id="azienda" type="text" pInputText formControlName="azienda" placeholder="Inserisci l'azienda" />
+                    <div *ngIf="userForm.get('azienda')?.invalid && userForm.get('azienda')?.touched" class="p-error">
+                        <p class="red-text">Azienda di riferimento obbligatoria.</p>
+                    </div>
+                </div>
+            
+                <!-- Ruolo -->
+                <div class="p-field">
+                    <label for="ruolo">Ruolo</label>
+                    <p-dropdown id="ruolo" [options]="ruoli" formControlName="ruolo" placeholder="Seleziona il ruolo"></p-dropdown>
+                    <div *ngIf="userForm.get('ruolo')?.invalid && userForm.get('ruolo')?.touched" class="p-error">
+                        <p class="red-text">Ruolo obbligatorio.</p>
+                    </div>
+                    
+                </div>
+            
+                <!-- E-mail -->
+                <div class="p-field">
+                    <label for="email">E-mail</label>
+                    <input id="email" type="email" pInputText formControlName="email" placeholder="Inserisci l'email" />
+                    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="p-error">
+                        <p class="red-text">Inserisci un'email valida.</p>
+                    </div>
+                </div>
+            
+                <!-- Numero di telefono -->
+                <div class="p-field">
+                    <label for="telefono">Telefono</label>
+                    <input id="telefono" type="tel" pInputText formControlName="telefono" placeholder="Inserisci il numero di telefono" />
+                    <div *ngIf="userForm.get('telefono')?.invalid && userForm.get('telefono')?.touched" class="p-error">
+                        <p class="red-text">Numero telefono obbligatorio.</p>
+                    </div>
+                </div>
+            
+                <!-- Allergie/Intolleranze -->
+                <div class="p-field-checkbox">
+                    <p-checkbox formControlName="allergie" inputId="allergie"></p-checkbox>
+                    <label for="allergie">Allergie/Intolleranze</label>
+                </div>
+            
+                <!-- Trattamento dei dati -->
+                <div class="p-field-checkbox">
+                    <p-checkbox formControlName="trattamentoDati" inputId="trattamentoDati"></p-checkbox>
+                    <label for="trattamentoDati">Acconsento al trattamento dei dati</label>
+                </div>
+            
+                <!-- Pulsante di convalida -->
+                <p-button label="Registra" icon="pi pi-check" severity="success" [disabled]="userForm.invalid" (onClick)="onSubmit()"/>
+                </div>
+            </form>
+        
+            <p-dialog header="Popup di conferma" [modal]="true" [(visible)]="dialoShow" [style]="{ width: '25rem' }">
+                <span class="p-text-secondary block mb-8">Utente registrato con successo...</span>
+                <!--<p-button label="Search" icon="pi pi-check" severity="help" (onClick)="goScanner()" />-->
+            </p-dialog>
+
+            <p-dialog header="Popup di convalida" [modal]="true" [(visible)]="dialogErrorShow" [style]="{ width: '25rem' }">
+                <span class="p-text-secondary block mb-8">Utente già registrato con questa email...</span>
+                <!--<p-button label="Search" icon="pi pi-check" severity="help" (onClick)="goScanner()" />-->
+            </p-dialog>
+        
+        </p-card>
+    </div>
+    <div class="box">
+        <p-card header="Login Utente" styleClass="p-mb-3">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+                <!-- E-mail -->
+                <div class="p-field">
+                    <label for="emailLogin">E-mail</label>
+                    <input id="emailLogin" type="email" pInputText formControlName="emailLogin" placeholder="Inserisci l'email" />
+                    <div *ngIf="userForm.get('emailLogin')?.invalid && userForm.get('emailLogin')?.touched" class="p-error">
+                        <p class="red-text">Inserisci un'email valida.</p>
+                    </div>
+                </div>
+        
+                <!-- Pulsante di convalida -->
+                <p-button label="Entra" icon="pi pi-check" severity="success" [disabled]="loginForm.invalid" (onClick)="onSubmitLogin()"/>
+            </form>
+        </p-card>
+
+        <p-dialog header="Popup di errore login" [modal]="true" [(visible)]="errorLoginShow" [style]="{ width: '25rem' }">
+            <span class="p-text-secondary block mb-8">Utente non censito...</span>
+        </p-dialog>
+
+        <p-panel header="Mappa Forum Milano">
+            <div id="map" style="width: 700px;height: 300px;"></div>
+        </p-panel>
+    </div>
+</div>

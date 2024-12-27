@@ -1,0 +1,10 @@
+.top-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  body {
+    margin-top: 50px; /* Per evitare che il contenuto si sovrapponga al menu */
+  }
+  

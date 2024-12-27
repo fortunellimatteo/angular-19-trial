@@ -1,0 +1,16 @@
+<app-top-menu></app-top-menu>
+<p-card header="Scanner di Codici QR/Barre" class="p-mb-3">
+  <div class="scanner-container">
+    <zxing-scanner
+      (format)="allowedFormats"
+      (scanSuccess)="handleScanResult($event)"
+      (scanError)="handleScanError($event)"
+      (device)="selectedDevice"
+      [tryHarder]="true">
+    </zxing-scanner>
+  </div>
+
+  <p-button label="Avvia Scanner" icon="pi pi-camera" class="p-mt-3"></p-button>
+  
+  <p *ngIf="scannedResult">Risultato: {{ scannedResult }}</p>
+</p-card>

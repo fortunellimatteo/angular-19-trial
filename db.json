@@ -1,0 +1,41 @@
+{
+  "registrazioneUtente": [
+    {
+      "id": "a2fb",
+      "nome": "matteo",
+      "cognome": "fortunelli",
+      "azienda": "gway",
+      "ruolo": "interno",
+      "email": "fortunellimatteo@gmail.com",
+      "telefono": "3404013218",
+      "allergie": false,
+      "trattamentoDati": false,
+      "qrcodeUUID": "1a9af9c2-9ce1-4fe8-86a4-1689e4b6b865"
+    },
+    {
+      "id": "3cef",
+      "nome": "leonardo",
+      "cognome": "roscini",
+      "azienda": "prova srl",
+      "ruolo": "cliente",
+      "email": "lroscini@provamail.com",
+      "telefono": "23456235",
+      "allergie": false,
+      "trattamentoDati": false,
+      "qrcodeUUID": "76956b0c-3429-4e2a-b1bd-a0c6277ef0ca"
+    },
+    {
+      "id": "e189",
+      "nome": "laura",
+      "cognome": "Venier",
+      "azienda": "gway",
+      "ruolo": "fornitore",
+      "email": "lauravenier@gmail.com",
+      "telefono": "24632467246",
+      "allergie": false,
+      "trattamentoDati": false,
+      "qrcodeUUID": "723ab005-20b0-4eb2-b4f7-d1742f52e2c9"
+    }
+  ],
+  "sessioneTecnica": []
+}

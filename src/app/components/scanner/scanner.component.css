@@ -1,0 +1,11 @@
+.scanner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    border: 1px solid #ccc;
+  }
+  
+  .p-button {
+    margin-top: 10px;
+  }
